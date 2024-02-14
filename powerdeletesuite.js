@@ -57,7 +57,7 @@ var pd = {
             alert(
               'Sadly, there]\'s no way to automatically update the bookmark. :/\nScroll down to the "Install PowerDeleteSuite" button on the github page. Replace your CURRENT bookmark with the one found there to install the latest bookmark.'
             );
-            document.location.href = "https://github.com/j0be/PowerDeleteSuite";
+            document.location.href = "https://github.com/ur678/PowerDeleteSuite";
             return false;
           }
         }
@@ -140,17 +140,16 @@ var pd = {
     },
     applyStyles: function () {
       $.ajax({
-        url: "/r/PowerDeleteSuite/about/stylesheet/.json",
-        context: $("#pd__style"),
-      }).then(
-        function (data) {
-          $(this)[0].innerHTML = data.data.stylesheet;
-          $("#pd__central").show();
-        },
-        function () {
-          alert("Error retrieving CSS from /r/PowerDeleteSuite");
-        }
-      );
+  url: "https://raw.githubusercontent.com/ur678/PowerDeleteSuite/master/jsonfiledelete.json",
+  dataType: "json",
+  success: function(data) {
+    $("#pd__style")[0].innerHTML = data.stylesheet;
+    $("#pd__central").show();
+  },
+  error: function() {
+    alert("Error retrieving data from GitHub");
+  }
+});
     },
     applyCentral: function () {
       $.ajax({
